@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Microservice App</title>
+</head>
+<body>
+    <h1>Welcome to the Microservice App</h1>
+   <img align="right" alt="Coding" width="400" src="https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif">
+    <button onclick="getData()">Get Data</button>
+    <div id="data"></div>
+
+    <script>
+        function getData() {
+            fetch('/api')
+                .then(response => response.json())
+                .then(data => {
+                    // Clear previous data
+                    document.getElementById('data').innerHTML = '';
+
+                    // Loop through the user data and append to the 'data' div
+                    data.forEach(user => {
+                        let userElement = document.createElement('p');
+                        userElement.innerText = `User ID: ${user.id}, Name: ${user.name}`;
+                        document.getElementById('data').appendChild(userElement);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
+

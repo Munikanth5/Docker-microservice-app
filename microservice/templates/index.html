@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microservice App</title>
+</head>
+<body>
+    <h1>Welcome to the Microservice App</h1>
+    <button onclick="getData()">Get Data</button>
+    <div id="data"></div>
+
+    <script>
+        function getData() {
+            fetch('/api')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('data').innerText = data.message;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
